@@ -1,5 +1,11 @@
 <!DOCTYPE html><html><head>
-		<script type="module">import init from '/frontend-f5514473473812b0.js';init('/frontend-f5514473473812b0_bg.wasm');</script>
+		<script type="module">
+			import init from '/frontend-f5514473473812b0.js';
+
+			init().then(() => {
+				console.log("WASM loaded");
+			});
+		</script>
 
 		<style>
 			body {
@@ -23,6 +29,4 @@
 <link rel="preload" href="/frontend-f5514473473812b0_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 <link rel="modulepreload" href="/frontend-f5514473473812b0.js"></head>
 	<body>
-	
-
 </body></html>
