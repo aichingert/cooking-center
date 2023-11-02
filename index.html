@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head>
+		<script type="module">import init from '/frontend-f5514473473812b0.js';init('/frontend-f5514473473812b0_bg.wasm');</script>
+
+		<style>
+			body {
+				background: #2E303E;
+				color: #FFFFFF;
+			}
+
+			h1 {
+				color: #8488A0;
+			}
+
+			.area {
+				background: #4051B5;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+		<!-- <link data-trunk rel="icon" type="image/ico" href="/public/favicon.ico"/> -->
+	
+<link rel="preload" href="/frontend-f5514473473812b0_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/frontend-f5514473473812b0.js"></head>
+	<body>
+	
+
+<script>(function () {
+    var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    var url = protocol + '//' + window.location.host + '/_trunk/ws';
+    var poll_interval = 5000;
+    var reload_upon_connect = () => {
+        window.setTimeout(
+            () => {
+                // when we successfully reconnect, we'll force a
+                // reload (since we presumably lost connection to
+                // trunk due to it being killed, so it will have
+                // rebuilt on restart)
+                var ws = new WebSocket(url);
+                ws.onopen = () => window.location.reload();
+                ws.onclose = reload_upon_connect;
+            },
+            poll_interval);
+    };
+
+    var ws = new WebSocket(url);
+    ws.onmessage = (ev) => {
+        const msg = JSON.parse(ev.data);
+        if (msg.reload) {
+            window.location.reload();
+        }
+    };
+    ws.onclose = reload_upon_connect;
+})()
+</script></body></html>
